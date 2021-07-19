@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="shortcut icon" href="https://fav.farm/⚙️" type="image/x-icon" />
+    <title>Vue</title>
+  </head>
+  <body>
+    <div id="app">
+      <input v-model="time" type="range" />{{ time }}
+      <br />
+      <input v-model="search" type="search" placeholder="Search Task" />
+
+      <p v-for="(value, property) in user">{{ property }} : {{ value }}</p>
+      <hr />
+
+      <li v-for="(task) in taskFilter">{{ task.name }} - {{ task.time }}</li>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+      new Vue({
+        el: '#app',
+
+        data: {
+          time: 0,
+
+          search: '',
+
+          user: {
+            Username: 'anbreaker',
+            Role: 'admin',
+          },
+
+          tasks: [
+            { name: 'Learn modern JavaScript', time: 3 },
+            { name: 'Learn Vue.js', time: 7 },
+            { name: 'Repair the car', time: 22 },
+            { name: 'Travel more', time: 16 },
+            { name: 'Buy dinner', time: 12 },
+            { name: 'Improve as a developer', time: 9 },
+            { name: 'Give a course', time: 14 },
+          ],
+        },
+
+        computed: {
+          taskFilter() {
+            return this.tasks.filter(
+              (task) => task.time <= this.time && task.name.includes(this.search)
+            );
+          },
+        },
+      });
+
+      Vue.config.devtools = true;
+    </script>
+  </body>
+</html>
