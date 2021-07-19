@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="shortcut icon" href="https://fav.farm/⚙️" type="image/x-icon" />
+    <title>Vue</title>
+  </head>
+  <body>
+    <div id="app">
+      <input v-model="width" type="range" />Width
+
+      <br />
+
+      <input v-model="height" type="range" />Height
+
+      <br />
+
+      {{ urlComplet }}
+
+      <br />
+
+      <img :src="urlComplet" alt="" />
+      <!-- <input type="text" v-model="enlace">
+        <a v-bind:href="enlace">{{ link }}</a> -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+
+        data: {
+          link: 'http://www.vuejs.org',
+          baseUrl: 'https://placekitten.com',
+          width: 50,
+          height: 50,
+        },
+
+        computed: {
+          urlComplet() {
+            return `${this.baseUrl}/${this.width * 3}/${this.height * 3}`;
+          },
+        },
+      });
+
+      Vue.config.devtools = true;
+    </script>
+  </body>
+</html>
